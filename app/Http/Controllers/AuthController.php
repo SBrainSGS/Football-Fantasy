@@ -29,10 +29,13 @@ class AuthController extends Controller
 
         // Попытка аутентификации
         if (Auth::attempt($credentials)) {
-           $request->session()->regenerate();
+           $user = Auth::user();
+           $token = $user->createToken('auth-token')->plainTextToken;
 
             return response()->json([
                 'isSuccess' => true,
+                'token' => $token,
+                'user' => $user
             ]);
         }
 
@@ -47,7 +50,7 @@ class AuthController extends Controller
         // Валидация данных
         $validator = Validator::make($request->all(),[
             'login' => 'required|string|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6',
         ]);
 
         if($validator->fails()) {
