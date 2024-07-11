@@ -68,6 +68,7 @@ class AuthController extends Controller
         $user->assignRole('user');
         $user->save();
 
+
         return response()->json([
             'isSuccess' => true,
         ]);
@@ -77,12 +78,11 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
+        $request->user()->currentAccessToken()->delete();
 
         return response()->json([
-            'isSuccess' => true
-        ]);
+            'isSuccess' => true,
+            'message' => 'Logged out successfully'
+        ], 200);
     }
 }
