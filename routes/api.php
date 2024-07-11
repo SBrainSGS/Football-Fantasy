@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LeaguesController;
+use App\Http\Controllers\RealTeamsController;
+use App\Http\Controllers\PlayersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +27,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/fetchLeagues', [LeaguesController::class, 'fetchLeagues']);
+
+Route::get('/fetchTeams', [RealTeamsController::class, 'fetchTeams']);
+
+Route::get('/fetchPlayers', [PlayersController::class, 'fetchPlayers']);
