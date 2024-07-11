@@ -36,3 +36,5 @@ Route::get('/fetchTeams', [RealTeamsController::class, 'fetchTeams']);
 Route::get('/fetchPlayers', [PlayersController::class, 'fetchPlayers']);
 
 Route::post('/createTournament', [TournamentController::class, 'store']);
+
+Route::get('/getLeagues', [LeaguesController::class, 'getLeagues']);
