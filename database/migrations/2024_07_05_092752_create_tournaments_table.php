@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('link');
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
+            $table->string('privacy');
             $table->foreign('host_id')->references('id')->on('users');
         });
     }

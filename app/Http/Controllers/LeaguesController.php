@@ -10,31 +10,20 @@ class LeaguesController extends Controller
 {
     public function fetchLeagues()
     {
-        $response = Http::withHeaders(
-            [
-                'x-rapidapi-host' => 'v3.football.api-sports.io',
-	            'x-rapidapi-key' => 'd081c4dbc435088280995615b881f005'
-            ]
-        )->get('https://v3.football.api-sports.io/leagues', [
-            'season' => date('Y')
-        ]);
+        $response = Http::get('https://fantasy.premierleague.com/api/bootstrap-static/');
 
         if ($response->successful()) {
             $data = $response->json();
+            $leagues = $data['events'];
 
-            foreach ($data['response'] as $item) {
-                if (is_array($item) && isset($item['league']) && is_array($item['league'])) {
+            foreach ($leagues as $league) {
+                if($league['is_current'])
                     League::create(
-                        ['id' => $item['league']['id'],
-                            'name' => $item['league']['name'],
+                        ['id' => $league['id'],
+                            'name' => $league['name'],
                             'start_datetime' => $item['seasons'][0]['start'],
                             'end_datetime' => $item['seasons'][0]['end']]
                     );
-                } else {
-                    return response()->json([
-                        'isSuccess' => 'false'
-                    ]);
-                }
             }
 
 //            return $response;

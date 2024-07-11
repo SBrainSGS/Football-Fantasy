@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LeaguesController;
 use App\Http\Controllers\RealTeamsController;
 use App\Http\Controllers\PlayersController;
+use App\Http\Controllers\TournamentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,5 @@ Route::get('/fetchLeagues', [LeaguesController::class, 'fetchLeagues']);
 Route::get('/fetchTeams', [RealTeamsController::class, 'fetchTeams']);
 
 Route::get('/fetchPlayers', [PlayersController::class, 'fetchPlayers']);
+
+Route::post('/createTournament', [TournamentController::class, 'store']);
