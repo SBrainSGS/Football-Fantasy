@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('players-_teams', function (Blueprint $table) {
+        Schema::create('user_tournaments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('tournament_id')->unsigned();
             $table->integer('team_id')->unsigned();
-            $table->integer('player_id')->unsigned();
+            $table->integer('score');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('tournament_id')->references('id')->on('tournaments');
             $table->foreign('team_id')->references('id')->on('teams');
-            $table->foreign('player_id')->references('id')->on('players');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('players-_teams');
+        Schema::dropIfExists('user-_tournaments');
     }
 };
