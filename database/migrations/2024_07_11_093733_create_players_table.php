@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('real_team')->unsigned();
             $table->string('avatar_path');
             $table->foreign('real_team')->references('id')->on('real_teams');
+            $table->string('wage');
             $table->timestamps();
         });
     }

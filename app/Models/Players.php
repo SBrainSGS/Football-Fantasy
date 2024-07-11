@@ -11,5 +11,5 @@ class Players extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['id', 'name', 'avatar_path', 'real_team', 'position'];
+    protected $fillable = ['id', 'name', 'avatar_path', 'real_team', 'position', 'wage'];
 }

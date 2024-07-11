@@ -81,7 +81,7 @@ class RealTeamsController extends Controller
     public function fetchTeams()
     {
         $response = Http::withHeaders([
-            'x-rapidapi-key' => 'd081c4dbc435088280995615b881f005',
+            'x-rapidapi-key' => 'd7b78e8683d92681b6314df9bd6773eb',
         ])->get('https://v3.football.api-sports.io/teams', [
             'league' => 4,
             'season' => 2024,
