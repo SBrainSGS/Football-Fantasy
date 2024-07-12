@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('players_teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('team_id')->unsigned();
+            $table->integer('team_id')->unsigned()->nullable();
             $table->integer('player_id')->unsigned();
             $table->foreign('team_id')->references('id')->on('teams');
             $table->foreign('player_id')->references('id')->on('players');

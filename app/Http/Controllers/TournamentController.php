@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tournament;
+use App\Models\Players_Teams;
 use Illuminate\Http\Request;
 
 class TournamentController extends Controller
@@ -11,7 +12,7 @@ class TournamentController extends Controller
     {
         $link = $this->generateConnectionCode();
 
-        Tournament::create([
+        $tournament = Tournament::create([
             'name' => $request['name'],
             'league_id' => $request['league_id'],
             'max_wage' => $request['budget'],
@@ -22,6 +23,13 @@ class TournamentController extends Controller
             'host_id' => $request['host_id'],
             'link' => $link
         ]);
+
+        Players_Teams::create([
+            'player_id' => $request['host_id'],
+            'score' => 0,
+            'tournament_id' => $tournament -> id
+        ]);
+
         return response()->json([
            'isSuccess' => 'true',
             'message' => 'Tournament was created successfully',
@@ -39,5 +47,32 @@ class TournamentController extends Controller
         }
 
         return $code;
+    }
+
+    public function addNewUser(Request $request)
+    {
+
+        $link = $request['link'];
+        $user = $request['user_id'];
+        $id = Tournament::all()->where('link', $link)->pluck('id');
+
+
+        if (Players_Teams::all()->where('tournament_id', $id)->count() >= Tournament::all()->where('id', $id)->pluck('max_players')){
+            return response()->json([
+                'isSuccess' => 'false',
+                'message' => 'Tournament is full'
+            ]);
+        }
+
+        Players_Teams::create([
+            'player_id' => $user,
+            'score' => 0,
+            'tournament_id' => $id
+        ]);
+
+        return response()->json([
+            'isSuccess' => 'true',
+            'message' => 'User added successfully'
+        ]);
     }
 }
