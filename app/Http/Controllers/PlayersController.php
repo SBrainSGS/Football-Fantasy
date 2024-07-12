@@ -74,4 +74,13 @@ class PlayersController extends Controller
             'average_wage' => $averageWage,
         ]);
     }
+
+    public function getMaxUsers()
+    {
+        $max = Players::all()->count() / 11;
+
+        return response()->json([
+            'max_users' => $max
+        ]);
+    }
 }

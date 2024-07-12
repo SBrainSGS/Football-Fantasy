@@ -47,3 +47,5 @@ Route::post('/addNewUser', [TournamentController::class, 'addNewUser']);
 Route::get('/startDraft', [DraftController::class, 'startDraft']);
 
 Route::get('/choosePlayer', [DraftController::class, 'choosePlayer']);
+
+Route::get('/getMaxUsers', [PlayersController::class, 'getMaxUsers']);
