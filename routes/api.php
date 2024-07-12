@@ -7,6 +7,7 @@ use App\Http\Controllers\LeaguesController;
 use App\Http\Controllers\RealTeamsController;
 use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\TournamentController;
+use App\Http\Controllers\DraftController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,7 @@ Route::get('/getLeagues', [LeaguesController::class, 'getLeagues']);
 Route::get('/getAvgWage', [PlayersController::class, 'getAverageWage']);
 
 Route::post('/addNewUser', [TournamentController::class, 'addNewUser']);
+
+Route::get('/startDraft', [DraftController::class, 'startDraft']);
+
+Route::get('/choosePlayer', [DraftController::class, 'choosePlayer']);

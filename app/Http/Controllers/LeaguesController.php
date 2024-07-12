@@ -47,7 +47,7 @@ class LeaguesController extends Controller
 
     public function getLeagues()
     {
-        $leagues = League::all()->pluck('name');
+        $leagues = League::all();
         return response()->json([
             'leagues' => $leagues,
         ]);

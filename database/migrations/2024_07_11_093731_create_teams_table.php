@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('name');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

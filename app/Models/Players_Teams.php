@@ -11,5 +11,5 @@ class Players_Teams extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['user_id', 'tournament_id', 'team_id', 'score'];
+    protected $fillable = ['team_id', 'player_id'];
 }

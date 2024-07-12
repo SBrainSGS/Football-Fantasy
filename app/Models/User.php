@@ -22,7 +22,9 @@ class User extends Authenticatable
         'login',
         'password',
         'avatar_path',
-        'rating'
+        'rating',
+        'current_draft_players',
+        'budget'
     ];
 
     public $timestamps = false;

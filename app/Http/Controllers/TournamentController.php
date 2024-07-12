@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tournament;
 use App\Models\Players_Teams;
+use App\Models\User_Tournament;
 use Illuminate\Http\Request;
 
 class TournamentController extends Controller
@@ -24,7 +25,7 @@ class TournamentController extends Controller
             'link' => $link
         ]);
 
-        Players_Teams::create([
+        User_Tournament::create([
             'player_id' => $request['host_id'],
             'score' => 0,
             'tournament_id' => $tournament -> id
@@ -64,7 +65,7 @@ class TournamentController extends Controller
             ]);
         }
 
-        Players_Teams::create([
+        User_Tournament::create([
             'player_id' => $user,
             'score' => 0,
             'tournament_id' => $id

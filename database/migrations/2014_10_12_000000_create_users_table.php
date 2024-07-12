@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar_path')->nullable();
             $table->integer('rating');
+            $table->json('current_draft_players')->nullable();
+            $table->integer('budget');
         });
     }
 
